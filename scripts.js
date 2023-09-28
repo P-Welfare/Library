@@ -31,3 +31,8 @@ function displayBooks() {
         container.appendChild(div);
     }
 }
+
+const btn = document.getElementById('#newBook');
+btn.addEventListener('click', () => {
+    
+});
