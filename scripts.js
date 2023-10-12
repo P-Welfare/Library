@@ -3,11 +3,12 @@ const dialog = document.getElementById("favDialog");
 const favDialog = document.getElementById("favDialog");
 const outputBox = document.querySelector("output");
 const confirmBtn = document.querySelector("#confirmBtn");
-var title = document.getElementById("title");
-var author = document.getElementById("author");
-var pages = document.getElementById("pages");
-var read = document.getElementById("read");
-
+const title = document.getElementById("title");
+const author = document.getElementById("author");
+const pages = document.getElementById("pages");
+const read = document.getElementById("read");
+const table = document.getElementById("myTable");
+const tBody = document.querySelector("tbody");
 
 const myLibrary = [];
 
@@ -35,24 +36,24 @@ const bookTest = new Book('Harry', 'JK Rowling', 200, 'yes');
 const bookTest2 = new Book('Harry 2', 'JK Rowling', 201, 'yes');
 
 function displayBooks() {
-     
+     tBody.innerHTML = '';
 
 
     for (let i= 0; i < myLibrary.length ; i++) { 
-        var table = document.getElementById("myTable");
 
-        var row = table.insertRow(0);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
+        const row = tBody.insertRow(-1);
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        const cell3 = row.insertCell(2);
+        const cell4 = row.insertCell(3);
 
         cell1.innerHTML = `${myLibrary[i].title}`;
         cell2.innerHTML = `${myLibrary[i].author}`;
         cell3.innerHTML = `${myLibrary[i].pages}`;
-        cell4.innerHTML = `${myLibrary[i].read}`;
-       
-            /*const div = document.createElement('div');
+        cell4.innerHTML = `${myLibrary[i].read}`; 
+
+      
+        /*const div = document.createElement('div');
         div.textContent = `${myLibrary[i].title} ` + `${myLibrary[i].author}` + ` ${myLibrary[i].pages}`;
         container.appendChild(div); */
         // add remove button
@@ -62,7 +63,7 @@ function displayBooks() {
 
 
 function clearDisplay() {
-    var table = document.getElementById("myTable");
+    
 // need to fix clear display of CONTAINER VS MY TABLE   AND DONT FORGET TBODY
     while (myTable.hasChildNodes())
     container.removeChild(myTable.firstChild)
@@ -85,7 +86,6 @@ showButton.addEventListener("click", () => {
     // must work out this close value an
     var addBook = new Book(title.value,author.value,pages.value,read.value) 
     addBookToLibrary(addBook);
-    clearDisplay();
     displayBooks();
     
   });
