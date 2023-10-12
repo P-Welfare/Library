@@ -9,11 +9,33 @@
     
 </head>
 <body>
-   
-    <div id="container">
-        
+   <div id="header">
+    <div id="quote"><p><em><strong>
+      "A word after a word after a word is power"</em></strong></p>
+      <p><em>~ Margaret Atwood</em></p>
     </div>
-    <dialog id="favDialog">
+    <div id="headerTitle"><p><strong> Library of Rickardo</strong></p>
+    </div>
+   </div>
+   <div id="mainBody">
+   <div id="sideBar">
+    <p><strong>Home</strong></p>
+
+    <button id="showDialog"><strong>Add a book!</strong></button>
+   </div>
+
+    <div id="container">
+      <table width="100%" id="myTable">
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th>Read?</th>
+          </tr>
+          
+
+      </table>
+      <dialog id="favDialog">
         <form>
           <p>
             <label for="title" >Book Title</label>
@@ -31,8 +53,15 @@
           </div>
         </form>
       </dialog>
-      <button id="showDialog">Add a book!</button>
-      <output></output>
+    </div>
+    
+     
+    </div>
+      <div id="footer">
+        <strong>Made by Paul</strong>
+
+      </div>
       <script src="scripts.js"></script>
+
 </body>
 </html>

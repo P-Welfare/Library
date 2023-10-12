@@ -9,7 +9,6 @@ var pages = document.getElementById("pages");
 var read = document.getElementById("read");
 
 
-
 const myLibrary = [];
 
 
@@ -40,20 +39,33 @@ function displayBooks() {
 
 
     for (let i= 0; i < myLibrary.length ; i++) { 
-     
+        var table = document.getElementById("myTable");
 
-        const container = document.querySelector('#container'); 
-        const div = document.createElement('div');
+        var row = table.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+
+        cell1.innerHTML = `${myLibrary[i].title}`;
+        cell2.innerHTML = `${myLibrary[i].author}`;
+        cell3.innerHTML = `${myLibrary[i].pages}`;
+        cell4.innerHTML = `${myLibrary[i].read}`;
+       
+            /*const div = document.createElement('div');
         div.textContent = `${myLibrary[i].title} ` + `${myLibrary[i].author}` + ` ${myLibrary[i].pages}`;
-        container.appendChild(div);
-    }
+        container.appendChild(div); */
+        // add remove button
+        // add change read status button
+    } 
     };
 
 
 function clearDisplay() {
-    const container = document.querySelector('#container');
-    while (container.hasChildNodes())
-    container.removeChild(container.firstChild)
+    var table = document.getElementById("myTable");
+// need to fix clear display of CONTAINER VS MY TABLE   AND DONT FORGET TBODY
+    while (myTable.hasChildNodes())
+    container.removeChild(myTable.firstChild)
     }
  
 
