@@ -46,11 +46,21 @@ function displayBooks() {
         const cell2 = row.insertCell(1);
         const cell3 = row.insertCell(2);
         const cell4 = row.insertCell(3);
+        let readBox = document.getElementById("myTable").rows[i+1].cells.item(3)
+        let checkbox = document.createElement('input');
+        checkbox.type = "checkbox";
+        checkbox.name = "name";
+        checkbox.value = "value";
+        checkbox.id = `box` + `${i}`;
+        // if (myLibrary[i].read.value === on) {
+            //document.getElementByID("")
+        //}
+        readBox.appendChild(checkbox);
 
         cell1.innerHTML = `${myLibrary[i].title}`;
         cell2.innerHTML = `${myLibrary[i].author}`;
         cell3.innerHTML = `${myLibrary[i].pages}`;
-        cell4.innerHTML = `${myLibrary[i].read}`; 
+       // cell4.innerHTML = `${myLibrary[i].read}`; 
 
       
         /*const div = document.createElement('div');
@@ -62,13 +72,6 @@ function displayBooks() {
     };
 
 
-function clearDisplay() {
-    
-// need to fix clear display of CONTAINER VS MY TABLE   AND DONT FORGET TBODY
-    while (myTable.hasChildNodes())
-    container.removeChild(myTable.firstChild)
-    }
- 
 
 showButton.addEventListener("click", () => {
     favDialog.showModal();
