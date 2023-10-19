@@ -9,7 +9,7 @@ const pages = document.getElementById("pages");
 const read = document.getElementById("read");
 const table = document.getElementById("myTable");
 const tBody = document.querySelector("tbody");
-
+let index = 0;
 const myLibrary = [];
 
 
@@ -26,6 +26,11 @@ function Book(title, author, pages, read) {
     
 }
 
+
+function deleteRow(index) {
+    document.getElementById("tbody").deleteRow(index);
+
+}
 
 function addBookToLibrary(Object) {
     myLibrary.push(Object);
@@ -46,8 +51,15 @@ function displayBooks() {
         const cell2 = row.insertCell(1);
         const cell3 = row.insertCell(2);
         const cell4 = row.insertCell(3);
+        const cell5 = row.insertCell(4);
         let readBox = document.getElementById("myTable").rows[i+1].cells.item(3)
         let checkbox = document.createElement('input');
+        let deleteButton = document.getElementById("myTable").rows[i+1].cells.item(4);
+        let deleteButton2 = document.createElement('button');
+        deleteButton2.type ="button";
+        deleteButton2.name = "delete";
+        deleteButton2.value = "value";
+        deleteButton2.id = `delete` + `${i}`;
         checkbox.type = "checkbox";
         checkbox.name = "name";
         checkbox.value = "value";
@@ -56,6 +68,7 @@ function displayBooks() {
             //document.getElementByID("")
         //}
         readBox.appendChild(checkbox);
+        deleteButton.appendChild(deleteButton2);
 
         cell1.innerHTML = `${myLibrary[i].title}`;
         cell2.innerHTML = `${myLibrary[i].author}`;
