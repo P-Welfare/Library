@@ -11,7 +11,12 @@ const table = document.getElementById("myTable");
 const tBody = document.querySelector("tbody");
 let index = 0;
 const myLibrary = [];
-
+const deleteButtons = document.querySelectorAll(".delete");
+deleteButtons.forEach(element => {
+    const id = element.getAttribute('id')
+    console.log(id)
+    element.addEventListener("click", deleteBook(id))
+    });
 
 function Book(title, author, pages, read) {
     this.title = title
@@ -27,10 +32,9 @@ function Book(title, author, pages, read) {
 }
 
 
-function deleteRow(index) {
-    document.getElementById("tbody").deleteRow(index);
-
-}
+function deleteBook(index) {
+    myLibrary.splice(index, 1)
+};
 
 function addBookToLibrary(Object) {
     myLibrary.push(Object);
@@ -57,9 +61,10 @@ function displayBooks() {
         let deleteButton = document.getElementById("myTable").rows[i+1].cells.item(4);
         let deleteButton2 = document.createElement('button');
         deleteButton2.type ="button";
-        deleteButton2.name = "delete";
+        deleteButton2.innerText = "Delete"
+        deleteButton2.className = "delete";
         deleteButton2.value = "value";
-        deleteButton2.id = `delete` + `${i}`;
+        deleteButton2.id = `${i}`;
         checkbox.type = "checkbox";
         checkbox.name = "name";
         checkbox.value = "value";
