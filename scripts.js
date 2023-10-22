@@ -9,14 +9,8 @@ const pages = document.getElementById("pages");
 const read = document.getElementById("read");
 const table = document.getElementById("myTable");
 const tBody = document.querySelector("tbody");
-let index = 0;
 const myLibrary = [];
-const deleteButtons = document.querySelectorAll(".delete");
-deleteButtons.forEach(element => {
-    const id = element.getAttribute('id')
-    console.log(id)
-    element.addEventListener("click", deleteBook(id))
-    });
+
 
 function Book(title, author, pages, read) {
     this.title = title
@@ -44,9 +38,12 @@ function addBookToLibrary(Object) {
 const bookTest = new Book('Harry', 'JK Rowling', 200, 'yes');
 const bookTest2 = new Book('Harry 2', 'JK Rowling', 201, 'yes');
 
+function clearDisplay() {
+    tBody.innerHTML = '';
+}
 function displayBooks() {
-     tBody.innerHTML = '';
-
+     clearDisplay()
+    
 
     for (let i= 0; i < myLibrary.length ; i++) { 
 
@@ -62,7 +59,7 @@ function displayBooks() {
         let deleteButton2 = document.createElement('button');
         deleteButton2.type ="button";
         deleteButton2.innerText = "Delete"
-        deleteButton2.className = "delete";
+        deleteButton2.className = "deleteB";
         deleteButton2.value = "value";
         deleteButton2.id = `${i}`;
         checkbox.type = "checkbox";
@@ -79,6 +76,7 @@ function displayBooks() {
         cell2.innerHTML = `${myLibrary[i].author}`;
         cell3.innerHTML = `${myLibrary[i].pages}`;
        // cell4.innerHTML = `${myLibrary[i].read}`; 
+       delButtons()
 
       
         /*const div = document.createElement('div');
@@ -87,6 +85,7 @@ function displayBooks() {
         // add remove button
         // add change read status button
     } 
+    
     };
 
 
@@ -96,18 +95,26 @@ showButton.addEventListener("click", () => {
   });
 
   confirmBtn.addEventListener("click", (event) => {
-    event.preventDefault(); // We don't want to submit this fake form
-   
-   /* title = title.value;
-    author = author.value; NOT SURE ON THIS
-    pages = pages.value;
-    read = read.value; */
-    
-    favDialog.close(); // Have to send the select box value here.
-    // must work out this close value an
+    event.preventDefault(); 
+    favDialog.close();
     var addBook = new Book(title.value,author.value,pages.value,read.value) 
     addBookToLibrary(addBook);
     displayBooks();
     
   });
 
+function delButtons() {
+  const deleteButtons = document.querySelectorAll(".deleteB");
+        deleteButtons.forEach((element) => {
+            let id = element.getAttribute('id')
+            console.log(id)
+            element.addEventListener("click", () => {
+
+             deleteBook(id)
+             clearDisplay()
+        });
+            
+            
+            });
+            
+        }
