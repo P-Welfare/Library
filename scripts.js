@@ -6,7 +6,7 @@ const confirmBtn = document.querySelector("#confirmBtn");
 const title = document.getElementById("title");
 const author = document.getElementById("author");
 const pages = document.getElementById("pages");
-const read = document.getElementById("read");
+//const read = document.getElementById("yes");
 const table = document.getElementById("myTable");
 const tBody = document.querySelector("tbody");
 const myLibrary = [];
@@ -41,6 +41,8 @@ const bookTest2 = new Book('Harry 2', 'JK Rowling', 201, 'yes');
 function clearDisplay() {
     tBody.innerHTML = '';
 }
+
+
 function displayBooks() {
      clearDisplay()
     
@@ -53,39 +55,37 @@ function displayBooks() {
         const cell3 = row.insertCell(2);
         const cell4 = row.insertCell(3);
         const cell5 = row.insertCell(4);
-        let readBox = document.getElementById("myTable").rows[i+1].cells.item(3)
-        let checkbox = document.createElement('input');
-        let deleteButton = document.getElementById("myTable").rows[i+1].cells.item(4);
-        let deleteButton2 = document.createElement('button');
-        deleteButton2.type ="button";
-        deleteButton2.innerText = "Delete"
-        deleteButton2.className = "deleteB";
-        deleteButton2.value = "value";
-        deleteButton2.id = `${i}`;
-        checkbox.type = "checkbox";
-        checkbox.name = "name";
-        checkbox.value = "value";
-        checkbox.id = `box` + `${i}`;
-        // if (myLibrary[i].read.value === on) {
-            //document.getElementByID("")
-        //}
-        readBox.appendChild(checkbox);
-        deleteButton.appendChild(deleteButton2);
+
+
+                    let deleteButton = document.getElementById("myTable").rows[i+1].cells.item(4);
+                    let deleteButton2 = document.createElement('button');
+                    deleteButton2.type ="button";
+                    deleteButton2.innerText = "Remove";
+                    deleteButton2.className = "deleteB";
+                    deleteButton2.value = "value";
+                    deleteButton2.id = `${i}`;
+               
+                        deleteButton.appendChild(deleteButton2);
+
+                    let readButton = document.createElement('button');
+                    readButton.type="button";
+                    readButton.innerText = "Read";
+                    readButton.className = "readB";
+                    readButton.value = "value";
+                    readButton.id = `${i}` + 'read';
+
+                        deleteButton.appendChild(readButton);
 
         cell1.innerHTML = `${myLibrary[i].title}`;
         cell2.innerHTML = `${myLibrary[i].author}`;
         cell3.innerHTML = `${myLibrary[i].pages}`;
-       // cell4.innerHTML = `${myLibrary[i].read}`; 
-       delButtons()
+        cell4.innerHTML = `${myLibrary[i].read}`; 
 
       
-        /*const div = document.createElement('div');
-        div.textContent = `${myLibrary[i].title} ` + `${myLibrary[i].author}` + ` ${myLibrary[i].pages}`;
-        container.appendChild(div); */
-        // add remove button
-        // add change read status button
+        
     } 
-    
+    delButtons()
+
     };
 
 
@@ -97,7 +97,9 @@ showButton.addEventListener("click", () => {
   confirmBtn.addEventListener("click", (event) => {
     event.preventDefault(); 
     favDialog.close();
-    var addBook = new Book(title.value,author.value,pages.value,read.value) 
+    let read = document.querySelector('input[name=read]:checked').value
+
+    var addBook = new Book(title.value,author.value,pages.value,read) 
     addBookToLibrary(addBook);
     displayBooks();
     
@@ -107,14 +109,31 @@ function delButtons() {
   const deleteButtons = document.querySelectorAll(".deleteB");
         deleteButtons.forEach((element) => {
             let id = element.getAttribute('id')
-            console.log(id)
             element.addEventListener("click", () => {
 
              deleteBook(id)
-             clearDisplay()
+             displayBooks()
         });
             
             
             });
             
         }
+/* toggle in the delete button loop to utilize the index value from the delete buttons? 
+function readButtons() {
+    const readButtons = document.querySelectorAll(".readB");
+        readButtons.forEach((element) => {
+            element.addEventListener("click", toggleRead())
+        } )
+    
+}
+
+function toggleRead() {
+    if (read = 'yes') {
+        myLibrary[index].read = 'no'
+        displayBooks()
+    } else {
+        myLibrary[index].read = 'yes'
+        displayBooks()
+    }
+} */

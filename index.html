@@ -50,8 +50,13 @@
             <input type="text" id="author">
             <label for="pages">Pages</label>
             <input type="text" id="pages">
-            <label for="read">Have you read it?</label>
-            <input type="checkbox" value="yes" name="read" id="read">
+            <fieldset>Have you read it?
+            <div><label for="yes">Yes</label></div>
+            <div><input type="radio" value="yes" name="read" id="yes"></div>
+            <label for="no">No</label>
+
+            <div><input type="radio" value="no" name="read" id="no" checked></div>
+          </fieldset>
           </p>
           <div>   
             <button value="cancel" formmethod="dialog">Cancel</button>
