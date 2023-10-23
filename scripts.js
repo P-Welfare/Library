@@ -71,7 +71,7 @@ function displayBooks() {
                     readButton.type="button";
                     readButton.innerText = "Read";
                     readButton.className = "readB";
-                    readButton.value = "value";
+                    readButton.value = `${i}`;
                     readButton.id = `${i}` + 'read';
 
                         deleteButton.appendChild(readButton);
@@ -85,7 +85,7 @@ function displayBooks() {
         
     } 
     delButtons()
-
+    readButtons()
     };
 
 
@@ -111,6 +111,10 @@ function delButtons() {
             let id = element.getAttribute('id')
             element.addEventListener("click", () => {
 
+           
+                    
+
+
              deleteBook(id)
              displayBooks()
         });
@@ -119,21 +123,22 @@ function delButtons() {
             });
             
         }
-/* toggle in the delete button loop to utilize the index value from the delete buttons? 
 function readButtons() {
     const readButtons = document.querySelectorAll(".readB");
         readButtons.forEach((element) => {
-            element.addEventListener("click", toggleRead())
-        } )
-    
-}
+            let value = element.getAttribute('value')
+            element.addEventListener("click", () => {
+                toggleRead(value)
+            } );
+        });
+    }
 
-function toggleRead() {
-    if (read = 'yes') {
-        myLibrary[index].read = 'no'
+function toggleRead(value) {
+    if (myLibrary[value].read === 'yes') {
+        myLibrary[value].read =  'no'
         displayBooks()
-    } else {
-        myLibrary[index].read = 'yes'
+    } else if (myLibrary[value].read === 'no') {
+        myLibrary[value].read = 'yes'
         displayBooks()
     }
-} */
+}
