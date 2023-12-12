@@ -6,13 +6,33 @@ const confirmBtn = document.querySelector("#confirmBtn");
 const title = document.getElementById("title");
 const author = document.getElementById("author");
 const pages = document.getElementById("pages");
-//const read = document.getElementById("yes");
 const table = document.getElementById("myTable");
 const tBody = document.querySelector("tbody");
 const myLibrary = [];
 
+ class Book {
+  
+  constructor(title, author, pages, read) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read 
+    }
+  info() { 
+    info =  `${title} by ${author}, ${pages}, ${read}.`
+        return info;
+        console.log(Book.info());
+   }
+   
+    
+   
+    
+  } 
 
-function Book(title, author, pages, read) {
+
+
+
+/* function Book(title, author, pages, read) {
     this.title = title
     this.author = author
     this.pages = pages
@@ -24,7 +44,7 @@ function Book(title, author, pages, read) {
     }
     
 }
-
+*/
 
 function deleteBook(index) {
     myLibrary.splice(index, 1)
@@ -98,8 +118,8 @@ showButton.addEventListener("click", () => {
     event.preventDefault(); 
     favDialog.close();
     let read = document.querySelector('input[name=read]:checked').value
-
-    var addBook = new Book(title.value,author.value,pages.value,read) 
+    var addBook = new Book(title.value,author.value,pages.value,read)
+   // var addBook = new Book(title.value,author.value,pages.value,read) 
     addBookToLibrary(addBook);
     displayBooks();
     
@@ -128,6 +148,7 @@ function readButtons() {
         readButtons.forEach((element) => {
             let value = element.getAttribute('value')
             element.addEventListener("click", () => {
+                 //myLibrary.read(value)
                 toggleRead(value)
             } );
         });
